@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="ru"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Наша карта желаний ❤️</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg1:#fdeaf1;--bg2:#ebe6fc;--bg3:#e0f4ee;--card:rgba(255,255,255,.74);--ink:#4a3f5c;--mute:#8d82a1;--pink:#f2a0bd;--lav:#a995ee;--mint:#8fd9c2;--peach:#fbc9ab;--line:rgba(169,149,238,.28);--shadow:0 12px 34px rgba(169,149,238,.22);--inp:rgba(255,255,255,.7);--sheet:#fff}
+@media (prefers-color-scheme:dark){:root:not([data-theme]){--bg1:#3a2a44;--bg2:#2b2846;--bg3:#243a3a;--card:rgba(62,52,84,.72);--ink:#f3eafa;--mute:#b6a9cc;--line:rgba(185,168,240,.24);--shadow:0 12px 34px rgba(0,0,0,.3);--inp:rgba(0,0,0,.25);--sheet:#352d4c}}
+:root[data-theme="dark"]{--bg1:#3a2a44;--bg2:#2b2846;--bg3:#243a3a;--card:rgba(62,52,84,.72);--ink:#f3eafa;--mute:#b6a9cc;--line:rgba(185,168,240,.24);--shadow:0 12px 34px rgba(0,0,0,.3);--inp:rgba(0,0,0,.25);--sheet:#352d4c}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:linear-gradient(140deg,var(--bg1),var(--bg2) 50%,var(--bg3));background-attachment:fixed;overflow-x:hidden}
+.blob{position:fixed;border-radius:50%;filter:blur(70px);opacity:.55;z-index:0;pointer-events:none;animation:fl 16s ease-in-out infinite}
+.b1{width:280px;height:280px;background:var(--pink);top:-70px;left:-70px}.b2{width:320px;height:320px;background:var(--lav);bottom:-90px;right:-90px;animation-delay:-6s}.b3{width:220px;height:220px;background:var(--mint);top:42%;right:-60px;animation-delay:-10s}
+@keyframes fl{50%{transform:translate(30px,-30px) scale(1.1)}}
+.wrap{position:relative;z-index:1;max-width:740px;margin:0 auto;padding:26px 16px 110px}
+.i{display:block;flex:none}
+header{text-align:center;margin-bottom:18px}
+.ring{position:relative;width:132px;height:132px;margin:0 auto 10px}
+.ring svg.r{transform:rotate(-90deg)}
+.ring .c{position:absolute;inset:0;display:grid;place-items:center;text-align:center}
+.ring b{font:italic 500 34px 'Playfair Display',serif;line-height:1}.ring small{display:block;font-size:11px;color:var(--mute);margin-top:3px;font-weight:700;letter-spacing:.06em}
+h1{font:italic 500 clamp(28px,7.5vw,42px) 'Playfair Display',Georgia,serif;margin:0 0 4px;display:flex;gap:10px;justify-content:center;align-items:center;flex-wrap:wrap}
+h1 svg{color:var(--pink);animation:beat 2s infinite}@keyframes beat{10%,30%{transform:scale(1.18)}}
+.sub{color:var(--mute);font-size:14px;letter-spacing:.02em}
+.card{background:var(--card);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow);padding:16px;margin-bottom:14px}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--pink),var(--lav));transition:width .6s}
+.tabs{display:flex;gap:4px;margin:18px 0 14px;padding:5px;border-radius:99px;background:var(--card);border:1px solid var(--line)}
+.tab{flex:1;display:flex;gap:8px;justify-content:center;align-items:center;border:0;background:none;color:var(--mute);padding:11px;border-radius:99px;font:700 15px Nunito;cursor:pointer;transition:.25s}
+.tab.on{background:linear-gradient(90deg,var(--pink),var(--lav));color:#fff;box-shadow:0 6px 16px rgba(169,149,238,.4)}
+.filters{display:flex;gap:6px;overflow-x:auto;padding-bottom:8px;margin-bottom:6px}
+.chip{display:flex;gap:6px;align-items:center;white-space:nowrap;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 13px;border-radius:99px;font:700 13px Nunito;cursor:pointer}
+.chip.on{background:var(--lav);color:#fff;border-color:transparent}
+input,textarea{width:100%;font:inherit;color:var(--ink);background:var(--inp);border:1px solid var(--line);border-radius:16px;padding:12px 14px;outline:none;margin-bottom:10px}
+input:focus,textarea:focus{border-color:var(--lav);box-shadow:0 0 0 3px rgba(169,149,238,.2)}
+textarea{resize:vertical;min-height:64px}
+label.l{display:block;font-size:12px;font-weight:800;color:var(--mute);letter-spacing:.06em;text-transform:uppercase;margin:4px 0 6px}
+.btn{display:inline-flex;gap:8px;align-items:center;justify-content:center;border:0;border-radius:99px;padding:12px 20px;font:800 14px Nunito;cursor:pointer;color:#fff;background:linear-gradient(90deg,var(--pink),var(--lav));box-shadow:0 8px 20px rgba(169,149,238,.4);transition:transform .15s}
+.btn:active{transform:scale(.96)}
+.btn.ghost{background:none;color:var(--mute);box-shadow:none;border:1px solid var(--line)}
+.btn.sm{padding:10px 14px}
+.row{display:flex;gap:8px;align-items:flex-start}.row>input{margin-bottom:0}
+.tile{width:50px;height:50px;border-radius:17px;display:grid;place-items:center;flex:none;color:#fff}
+.t0{background:linear-gradient(135deg,#8fc3f5,#a995ee)}.t1{background:linear-gradient(135deg,#fbc9ab,#f2a0bd)}.t2{background:linear-gradient(135deg,#f6a8c4,#e98fb4)}.t3{background:linear-gradient(135deg,#ffd49a,#fbae8a)}.t4{background:linear-gradient(135deg,#8fd9c2,#7bc4d6)}.t5{background:linear-gradient(135deg,#b6a4f2,#8e9cf0)}.t6{background:linear-gradient(135deg,#d9b0f0,#f2a0bd)}
+.wish.done .tile{background:linear-gradient(135deg,#8fd9c2,#6cc7a8)}
+.wh{display:flex;gap:12px;align-items:center;cursor:pointer}
+.wh h3{margin:0;font-size:17px;font-weight:800}.wish.done h3{opacity:.6;text-decoration:line-through}
+.note{color:var(--mute);font-size:14px;margin:3px 0 0;white-space:pre-wrap}
+.meta{display:flex;gap:12px;font-size:12px;font-weight:700;color:var(--mute);margin-top:5px}.meta span{display:flex;gap:4px;align-items:center}
+.pct{font:italic 500 22px 'Playfair Display',serif;color:var(--lav)}
+.more{display:none;margin-top:14px;border-top:1px dashed var(--line);padding-top:12px}.open .more{display:block}
+.step{display:flex;gap:12px;align-items:center;padding:8px 0;font-size:15px;cursor:pointer;position:relative}
+.step input{position:absolute;opacity:0;width:0;height:0}
+.chk{width:24px;height:24px;border-radius:50%;border:2px solid var(--lav);display:grid;place-items:center;color:transparent;flex:none;transition:.2s}
+.step input:checked+.chk{background:linear-gradient(135deg,var(--pink),var(--lav));border-color:transparent;color:#fff}
+.step input:checked~span.tx{text-decoration:line-through;opacity:.55}
+.acts{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:12px 0}
+.link{display:flex;gap:6px;align-items:center;background:none;border:0;color:var(--mute);font:700 13px Nunito;cursor:pointer;padding:8px 4px}
+.h4{display:flex;gap:8px;align-items:center;font-weight:800;font-size:14px;margin:14px 0 6px}
+.cm{background:rgba(169,149,238,.14);border-radius:16px;padding:9px 13px;margin:6px 0;font-size:14px}
+.cm b{font-size:12px;color:var(--lav)}.cm small{color:var(--mute);float:right;font-size:11px}
+.mem{display:flex;gap:14px}.mem .d{font-size:12px;color:var(--mute);font-weight:700;letter-spacing:.03em}
+.empty{text-align:center;color:var(--mute);padding:34px 10px}.empty svg{margin:0 auto 10px;color:var(--lav);opacity:.7}
+.fab{position:fixed;right:18px;bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:5;width:60px;height:60px;border-radius:50%;padding:0}
+.who{position:fixed;top:calc(10px + env(safe-area-inset-top,0px));right:12px;z-index:5;padding:7px 13px;font-size:12px;background:var(--card);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);color:var(--ink);box-shadow:none}
+.ov{position:fixed;inset:0;z-index:20;background:rgba(60,40,90,.35);backdrop-filter:blur(4px);display:none;align-items:flex-end;justify-content:center}
+.ov.on{display:flex}
+.sheet{width:100%;max-width:560px;max-height:92vh;overflow-y:auto;background:var(--sheet);border-radius:28px 28px 0 0;padding:22px 20px calc(24px + env(safe-area-inset-bottom,0px));animation:up .3s}
+@media(min-width:600px){.ov{align-items:center}.sheet{border-radius:28px}}
+@keyframes up{from{transform:translateY(40px);opacity:0}}
+.sheet h2{font:italic 500 26px 'Playfair Display',serif;margin:0 0 14px}
+.pick{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:12px}
+.pk{display:flex;gap:6px;align-items:center;border:1.5px solid var(--line);background:var(--inp);color:var(--ink);border-radius:99px;padding:8px 13px;font:700 13px Nunito;cursor:pointer}
+.pk.on{border-color:var(--lav);background:rgba(169,149,238,.2);color:var(--lav)}
+.pk.ico{padding:10px}
+.toast{position:fixed;left:50%;bottom:100px;transform:translateX(-50%);background:var(--ink);color:var(--bg1);padding:10px 18px;border-radius:99px;font-size:13px;font-weight:700;z-index:30;opacity:0;transition:.3s;pointer-events:none}.toast.on{opacity:1}
+.hearts{position:fixed;inset:0;pointer-events:none;z-index:25;overflow:hidden}.hearts span{position:absolute;bottom:-30px;animation:fly 2.4s ease-out forwards}
+@keyframes fly{to{transform:translateY(-110vh) rotate(25deg);opacity:0}}
+.tabs{overflow-x:auto;scrollbar-width:none}.tabs::-webkit-scrollbar{display:none}.tab{flex:none;padding:11px 16px;white-space:nowrap}
+.cover{width:100%;height:170px;object-fit:cover;border-radius:18px;margin-bottom:12px;display:block}
+.mimg{width:100%;max-height:260px;object-fit:cover;border-radius:16px;margin:8px 0;display:block}
+.prev{display:none;width:100%;max-height:160px;object-fit:cover;border-radius:16px;margin-bottom:10px}
+.up{display:flex;gap:8px;align-items:center;justify-content:center;border:1.5px dashed var(--lav);border-radius:16px;padding:14px;color:var(--lav);font-weight:700;cursor:pointer;margin-bottom:10px}
+.due{display:flex;gap:4px;align-items:center}.due.late{color:#e07a8f}
+.chipc{display:inline-flex;gap:6px;align-items:center;margin-top:12px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:9px 18px;border-radius:99px;font:800 13px Nunito;cursor:pointer;box-shadow:var(--shadow)}.chipc svg{color:var(--pink)}
+h1{background:linear-gradient(90deg,var(--pink),var(--lav));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}#hh{-webkit-text-fill-color:initial}
+a.btn{text-decoration:none}.empty{animation:fi .6s}@keyframes fi{from{opacity:0;transform:translateY(10px)}}
+.sl{margin:4px 0 12px}.slh{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:14px}.slh b{font:italic 500 22px 'Playfair Display',serif;color:var(--lav)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:10px;border-radius:99px;background:var(--line);padding:0;border:0;margin:12px 0 6px}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--pink),var(--lav));border:3px solid #fff;box-shadow:0 4px 12px rgba(169,149,238,.55)}
+input[type=range]::-moz-range-thumb{width:26px;height:26px;border-radius:50%;background:var(--lav);border:3px solid #fff}
+
+:root[data-theme="romantic"]{--bg1:#ffd3e4;--bg2:#ffc0d6;--bg3:#f7a9c6;--card:rgba(255,244,249,.8);--ink:#5a1f3d;--mute:#a1587c;--pink:#ff6fa5;--lav:#d6457f;--mint:#ff9bbd;--peach:#ffb3a7;--line:rgba(214,69,127,.25);--shadow:0 12px 34px rgba(214,69,127,.3);--inp:rgba(255,255,255,.78);--sheet:#fff0f6}
+header{animation:fd .9s both}@keyframes fd{from{opacity:0;transform:translateY(-16px)}}
+.ring{animation:rp 1s cubic-bezier(.3,1.4,.5,1) both}@keyframes rp{from{transform:scale(.6);opacity:0}}
+.anim>*{animation:in .6s cubic-bezier(.2,.8,.3,1) both}@keyframes in{from{opacity:0;transform:translateY(22px) scale(.97)}}
+.anim>:nth-child(2){animation-delay:.08s}.anim>:nth-child(3){animation-delay:.16s}.anim>:nth-child(4){animation-delay:.24s}.anim>:nth-child(5){animation-delay:.32s}.anim>:nth-child(n+6){animation-delay:.4s}
+.card{transition:transform .25s,box-shadow .25s}.card:hover{transform:translateY(-3px)}.card:active{transform:scale(.985)}
+.fab{animation:pl 2.6s infinite}@keyframes pl{0%{box-shadow:0 0 0 0 rgba(169,149,238,.6)}70%{box-shadow:0 0 0 18px rgba(169,149,238,0)}100%{box-shadow:0 0 0 0 rgba(169,149,238,0)}}
+.fab:active{transform:rotate(90deg) scale(.9)}
+.ov.on{animation:ovf .25s}@keyframes ovf{from{opacity:0}}
+.tab{transition:.3s}.tile{transition:transform .3s}.wish:hover .tile{transform:rotate(-8deg) scale(1.06)}
+.chipc{animation:bob 3.5s ease-in-out infinite}@keyframes bob{50%{transform:translateY(-3px)}}
+.amb{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}.amb span{position:absolute;bottom:-40px;animation:rise linear forwards}@keyframes rise{to{transform:translate(var(--dx),-115vh) rotate(30deg);opacity:0}}
+.thm{left:12px;right:auto}
+.themes{display:grid;gap:10px}.th{display:flex;gap:14px;align-items:center;border:2px solid var(--line);background:var(--inp);color:var(--ink);border-radius:20px;padding:12px;font:800 16px Nunito;cursor:pointer}.th.on{border-color:var(--lav)}.sw{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:var(--g);color:#fff}
+@media (prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+:root[data-theme="sunset"]{--bg1:#ffe2d0;--bg2:#ffcfc2;--bg3:#f3c4e6;--card:rgba(255,248,244,.78);--ink:#5b2e3a;--mute:#a1707a;--pink:#ff8e7a;--lav:#c76ad9;--mint:#ffc27a;--peach:#ffb199;--line:rgba(199,106,217,.25);--shadow:0 12px 34px rgba(199,106,217,.25);--inp:rgba(255,255,255,.75);--sheet:#fff4ee}
+:root[data-theme="mint"]{--bg1:#d9f5ea;--bg2:#cfeaf6;--bg3:#e6f6d8;--card:rgba(246,255,252,.78);--ink:#24474d;--mute:#5f8a8f;--pink:#5fcfae;--lav:#4f9fd6;--mint:#8fe0c4;--peach:#c2ecd8;--line:rgba(79,159,214,.28);--shadow:0 12px 34px rgba(79,159,214,.22);--inp:rgba(255,255,255,.75);--sheet:#f1fffa}
+.wrap{padding-top:64px}input,textarea{font-size:16px}.sheet{max-height:88dvh}.wh h3{overflow-wrap:anywhere}.tab{min-height:44px}
+.card{box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.4)}
+.ring svg.r{filter:drop-shadow(0 6px 14px rgba(169,149,238,.55))}
+.tile{position:relative;overflow:hidden}.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.45) 50%,transparent 70%);transform:translateX(-100%);animation:sh 5s infinite}@keyframes sh{60%,100%{transform:translateX(100%)}}
+.chips{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.btn.dis{opacity:.45;filter:grayscale(.4)}
+.coinbox{display:flex;gap:16px;align-items:center;color:#f0a93b;background:linear-gradient(135deg,rgba(255,214,120,.35),var(--card))}.coinbox b{font:italic 500 38px 'Playfair Display',serif;color:#e8962b}
+.cpop{position:absolute;left:50%;top:38%;display:flex;gap:8px;align-items:center;font:italic 500 38px 'Playfair Display',serif;color:#f0a93b;text-shadow:0 4px 18px rgba(240,169,59,.5);animation:cp 1.7s ease-out forwards}@keyframes cp{from{opacity:0;transform:translate(-50%,20px) scale(.6)}20%{opacity:1;transform:translate(-50%,0) scale(1.15)}to{opacity:0;transform:translate(-50%,-90px)}}
+</style><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+</head><body>
+<div class="blob b1"></div><div class="blob b2"></div><div class="blob b3"></div><div class="amb" id="amb"></div>
+<button class="btn who" id="who"></button><button class="btn who thm" id="thm" data-a="theme"></button>
+<div class="wrap">
+<header>
+ <div class="ring"><svg class="r" width="132" height="132" viewBox="0 0 100 100"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#f2a0bd"/><stop offset="1" stop-color="#a995ee"/></linearGradient></defs><circle cx="50" cy="50" r="44" fill="none" stroke="var(--line)" stroke-width="7"/><circle id="rg" cx="50" cy="50" r="44" fill="none" stroke="url(#g)" stroke-width="7" stroke-linecap="round" stroke-dasharray="276.5" stroke-dashoffset="276.5" style="transition:stroke-dashoffset .8s"/></svg><div class="c"><div><b id="pPct">0%</b><small id="pTxt">0 ИЗ 0</small></div></div></div>
+ <h1>Наша карта желаний <span id="hh"></span></h1><div class="sub">Мечтаем вместе — исполняем вместе</div><div class="chips"><button class="chipc" id="tog" data-a="since"></button><button class="chipc" id="coin" data-a="gotoShop"></button><button class="chipc" id="acc" data-a="auth"></button></div>
+</header>
+<div class="tabs" id="tabs"></div>
+<div id="view"></div>
+</div>
+<button class="btn fab" id="fab"></button>
+<div class="ov" id="ov"><div class="sheet" id="sheet"></div></div>
+<div class="toast" id="toast"></div><div class="hearts" id="hearts"></div>
+<script>
+const P={coin:"M12 21a9 9 0 1 0 0-18 9 9 0 0 0 0 18zM9.5 9.5h4a1.5 1.5 0 0 1 0 3h-3a1.5 1.5 0 0 0 0 3H14M12 7.5v9",moon:"M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z",map:"M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11zM12 12.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z",cal:"M7 3v4M17 3v4M4 9h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z",img:"M4 5h16a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1zM8.5 11a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM21 16l-5-5-8 8",plane:"M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.2.4c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.4-.2c.4-.3.6-.7.5-1.2z",home:"M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z",heart:"M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z",gift:"M20 12v9H4v-9M2 7h20v5H2zM12 21V7M12 7H7.5a2.5 2.5 0 1 1 0-5C11 2 12 7 12 7zM12 7h4.5a2.5 2.5 0 1 0 0-5C13 2 12 7 12 7z",leaf:"M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.5 19 2c1 2 2 4.2 2 8 0 5.5-4.8 10-10 10zM2 21c0-3 1.9-5.4 5.2-6.4 2.6-.8 5.2-2.2 6.8-4.6",wallet:"M19 7V5a2 2 0 0 0-2-2H5a2 2 0 0 0 0 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5M16 14h2",sparkle:"M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9zM19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z",camera:"M4 7h3l2-3h6l2 3h3a1 1 0 0 1 1 1v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1zM12 17a4 4 0 1 0 0-8 4 4 0 0 0 0 8z",plus:"M12 5v14M5 12h14",check:"M5 12.5l4.5 4.5L19 7.5",trash:"M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3",msg:"M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z",send:"M22 2 11 13M22 2l-7 20-4-9-9-4z",user:"M20 21a8 8 0 0 0-16 0M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z",undo:"M9 14 4 9l5-5M4 9h10a6 6 0 0 1 0 12h-3",star:"M12 3l2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z",sun:"M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4",steps:"M9 11l3 3 8-8M20 12v7a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h9"};
+const ic=(k,s=22,f)=>`<svg class="i" width="${s}" height="${s}" viewBox="0 0 24 24" fill="${f||"none"}" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="${P[k]||P.sparkle}"/></svg>`;
+const CATS=[["plane","Путешествия"],["home","Дом"],["heart","Отношения"],["gift","Подарки"],["leaf","Опыт"],["wallet","Финансы"],["sparkle","Другое"]];
+const MIC=["heart","sun","camera","plane","star","gift","leaf","home"];
+const FB={
+ apiKey:"ВСТАВЬТЕ_СЮДА",
+ authDomain:"",
+ projectId:"",
+ storageBucket:"",
+ messagingSenderId:"",
+ appId:""
+};
+const COLS=["wishes","memories","places","gifts","meta"],TABS=[["wishes","steps","Желания"],["tasks","star","Задания"],["shop","coin","Магазин"],["mem","camera","Воспоминания"],["places","map","Места"]];let pend=null,lk="places";let S={wishes:[],memories:[],places:[],gifts:[],meta:[]},tab="wishes",cat="all",open={},db=null,me="",selC=0,selM=0,pending=null;
+try{me=localStorage.getItem("wm_name")||""}catch(e){}
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,6);
+const cn=w=>(w.cat||"").replace(/^\S+\s+/,"");
+const ci=w=>Math.max(0,CATS.findIndex(c=>c[1]===cn(w)));
+const pct=w=>w.done?100:(typeof w.prog==="number"?w.prog:(w.steps&&w.steps.length?Math.round(w.steps.filter(s=>s.d).length/w.steps.length*100):0));
+function toast(t){const e=$("#toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),2000)}
+function hearts(){const h=$("#hearts");for(let i=0;i<16;i++){const s=document.createElement("span");s.innerHTML=ic("heart",18+Math.random()*20,["#f2a0bd","#a995ee","#8fd9c2"][i%3]);s.firstChild.style.color=["#f2a0bd","#a995ee","#8fd9c2"][i%3];s.style.left=Math.random()*100+"%";s.style.animationDelay=Math.random()*.7+"s";h.appendChild(s);setTimeout(()=>s.remove(),3300)}}
+function sheet(html){$("#sheet").innerHTML=html;$("#ov").classList.add("on")}
+function closeSheet(){$("#ov").classList.remove("on")}
+function nameSheet(cb){pending=cb;sheet(`<h2>Как вас зовут?</h2><p class="note" style="margin:0 0 12px">Имя будет видно рядом с вашими комментариями и воспоминаниями.</p><input id="f_name" value="${esc(me)}" placeholder="Например, Алексей" maxlength="20"><div class="row"><button class="btn" data-a="saveName">Продолжить</button><button class="btn ghost" data-a="close">Отмена</button></div>`);setTimeout(()=>$("#f_name")&&$("#f_name").focus(),100)}
+function needName(cb){me?cb():nameSheet(cb)}
+function confirmSheet(txt,cb){pending=cb;sheet(`<h2>Удалить?</h2><p class="note" style="margin:0 0 16px">${esc(txt)}</p><div class="row"><button class="btn" data-a="yes">Да, удалить</button><button class="btn ghost" data-a="close">Отмена</button></div>`)}
+function wishSheet(){selC=0;pend=null;sheet(`<h2>Новое желание</h2><label class="l">Мечта</label><input id="f_t" placeholder="О чём мечтаем?" maxlength="80"><label class="l">Подробности</label><textarea id="f_n" placeholder="Необязательно"></textarea><label class="l">Категория</label><div class="pick" id="pc">${CATS.map((c,i)=>`<button class="pk ${i?"":"on"}" data-a="pc" data-v="${i}">${ic(c[0],16)}${c[1]}</button>`).join("")}</div><label class="l">Срок (необязательно)</label><input id="f_due" type="date">${imgField}<div class="row"><button class="btn" data-a="saveWish">Сохранить</button><button class="btn ghost" data-a="close">Отмена</button></div>`)}
+function memSheet(){selM=0;pend=null;sheet(`<h2>Новое воспоминание</h2><label class="l">Что запомнилось</label><textarea id="f_t" placeholder="Расскажите о моменте…"></textarea><label class="l">Дата</label><input id="f_d" type="date" value="${new Date().toISOString().slice(0,10)}">${imgField}<label class="l">Настроение</label><div class="pick" id="pm">${MIC.map((k,i)=>`<button class="pk ico ${i?"":"on"}" data-a="pm" data-v="${i}">${ic(k,20)}</button>`).join("")}</div><div class="row"><button class="btn" data-a="saveMem">Сохранить</button><button class="btn ghost" data-a="close">Отмена</button></div>`)}
+let animNext=true,shown=0,cu;const gotData={};
+function countTo(n){clearInterval(cu);const f=shown,st=Date.now();cu=setInterval(()=>{const k=Math.min(1,(Date.now()-st)/800);shown=Math.round(f+(n-f)*k);$("#pPct").textContent=shown+"%";if(k===1)clearInterval(cu)},30)}
+function applyTheme(t){document.documentElement.setAttribute("data-theme",t);try{localStorage.setItem("wm_theme",t)}catch(e){}}
+try{applyTheme(localStorage.getItem("wm_theme")||(matchMedia("(prefers-color-scheme:dark)").matches?"dark":"light"))}catch(e){applyTheme("light")}
+function themeSheet(){const cur=document.documentElement.getAttribute("data-theme");sheet(`<h2>Тема оформления</h2><div class="themes">${[["light","sun","Светлая","#fdeaf1,#ebe6fc"],["dark","moon","Тёмная","#4a3a66,#2b2846"],["romantic","heart","Романтичная","#ffa6c6,#d6457f"],...((meta().inv||[]).some(v=>v.k==="th_sunset")?[["sunset","sun","Закат","#ffb199,#c76ad9"]]:[]),...((meta().inv||[]).some(v=>v.k==="th_mint")?[["mint","leaf","Мята","#9fe3cf,#5aa7d6"]]:[])].map(x=>`<button class="th ${cur===x[0]?"on":""}" data-a="setTheme" data-v="${x[0]}"><span class="sw" style="--g:linear-gradient(135deg,${x[3]})">${ic(x[1],22,x[0]==="romantic"?"currentColor":"none")}</span>${x[2]}</button>`).join("")}</div><button class="btn ghost" data-a="close" style="width:100%;margin-top:12px">Закрыть</button>`)}
+function amb(){if(document.hidden)return;const r=document.documentElement.getAttribute("data-theme")==="romantic",c=$("#amb"),e=document.createElement("span");e.innerHTML=ic("heart",10+Math.random()*(r?26:16),"currentColor");e.style.cssText=`left:${Math.random()*100}%;--dx:${Math.random()*80-40}px;animation-duration:${7+Math.random()*6}s;opacity:${r?.55:.3};color:${["var(--pink)","var(--lav)","var(--mint)"][Math.floor(Math.random()*3)]}`;c.appendChild(e);setTimeout(()=>e.remove(),14000)}
+if(!matchMedia("(prefers-reduced-motion:reduce)").matches)setInterval(()=>{amb();if(document.documentElement.getAttribute("data-theme")==="romantic")amb()},1300);
+const meta=()=>S.meta[0]||{id:"main"},setMeta=p=>save("meta",{...meta(),...p,id:"main"});
+function coinPop(n){const e=document.createElement("div");e.className="cpop";e.innerHTML=ic("coin",28)+"+"+n;$("#hearts").appendChild(e);setTimeout(()=>e.remove(),1800)}
+function earn(n){setMeta({coins:(meta().coins||0)+n});coinPop(n)}
+const TASKS=[["Обнимашки 10 минут",10],["Тёплое сообщение без повода",10],["Приготовить ужин вместе",25],["Прогулка без телефонов",20],["Назвать 3 вещи, которые любите друг в друге",15],["Сделать совместное фото",15],["Обсудить мечту из списка",20],["Сделать массаж плеч",15],["Посмотреть закат вместе",20],["Неожиданный комплимент",10]];
+const SHOP=[{id:"c_dinner",t:"coupon",ic:"gift",n:"Романтический ужин",p:200},{id:"c_massage",t:"coupon",ic:"heart",n:"Массаж 20 минут",p:120},{id:"c_breakfast",t:"coupon",ic:"home",n:"Завтрак в постель",p:100},{id:"c_movie",t:"coupon",ic:"camera",n:"Вечер кино на выбор",p:80},{id:"f_card",t:"friend",ic:"send",n:"Открытка другу",p:30},{id:"f_toast",t:"friend",ic:"star",n:"Тёплый тост для друзей",p:30},{id:"f_bouquet",t:"friend",ic:"sparkle",n:"Виртуальный букет",p:50},{id:"th_sunset",t:"theme",ic:"sun",n:"Тема «Закат»",p:150,th:"sunset"},{id:"th_mint",t:"theme",ic:"leaf",n:"Тема «Мята»",p:150,th:"mint"}];
+const FT={f_card:n=>`Дорогой друг! Мы думаем о тебе и желаем тепла и радости. С любовью, ${n||"мы"}.`,f_toast:n=>`За вас, наши дорогие! Пусть мечты сбываются, а рядом всегда будут те, кто любит. ${n||""}`,f_bouquet:n=>`Дарим тебе большой букет с самыми тёплыми пожеланиями. С любовью, ${n||"мы"}.`};
+function friendSheet(x){sheet(`<h2>${esc(x.n)}</h2><p class="note" style="margin:0 0 10px">Измените текст и отправьте другу.</p><textarea id="f_m" style="min-height:120px">${esc(FT[x.id](me))}</textarea><div class="row"><button class="btn" data-a="share">Отправить</button><button class="btn ghost" data-a="close">Закрыть</button></div>`)}
+function tasksHtml(){const d=Math.floor(Date.now()/864e5),td=meta().td||{},ids=[0,1,2,3,4].map(i=>(d*5+i)%10),dn=ids.filter(i=>td[d+":"+i]).length;
+ return `<div class="card"><div class="slh"><span>Задания на сегодня</span><b>${dn}/5</b></div><div class="bar" style="margin-top:8px"><i style="width:${dn*20}%"></i></div><p class="note">Выполняйте вместе и получайте монеты. Завтра появятся новые.</p></div>`+ids.map((i,n)=>{const ok=td[d+":"+i];return `<div class="card wish ${ok?"done":""}"><div class="wh"><div class="tile t${(n*2+1)%7}">${ic(ok?"check":"star",24)}</div><div style="flex:1;min-width:0"><h3>${esc(TASKS[i][0])}</h3><div class="meta"><span>${ic("coin",13)}+${TASKS[i][1]}</span></div></div>${ok?"":`<button class="btn sm" data-a="task" data-i="${i}">Готово</button>`}</div></div>`}).join("")}
+function shopHtml(){const m=meta(),c=isAdmin()?1e9:(m.coins||0),inv=m.inv||[];
+ const card=x=>{const own=x.t==="theme"&&inv.some(v=>v.k===x.id);return `<div class="card wish"><div class="wh"><div class="tile t${x.t==="theme"?5:x.t==="friend"?3:2}">${ic(x.ic,24)}</div><div style="flex:1;min-width:0"><h3>${esc(x.n)}</h3><div class="meta"><span>${ic("coin",13)}${x.p}</span></div></div>${own?`<button class="btn ghost sm" data-a="setTheme" data-v="${x.th}">Применить</button>`:`<button class="btn sm ${c<x.p?"dis":""}" data-a="buy" data-id="${x.id}">Купить</button>`}</div></div>`};
+ const sec=(t,ty)=>`<div class="h4">${t}</div>`+SHOP.filter(x=>x.t===ty).map(card).join("");
+ const my=inv.filter(v=>v.k.startsWith("c_"));
+ return `<div class="card coinbox">${ic("coin",42)}<div><b>${isAdmin()?"∞":c}</b><div class="note">монет на двоих</div></div></div><p class="note" style="padding:0 6px">Монеты дают за исполненные желания, задания, места, подарки и воспоминания.</p>`+sec("Для нас","coupon")+sec("Подарки друзьям","friend")+sec("Оформление","theme")+(my.length?`<div class="h4">Мои купоны</div>`+my.map(v=>{const x=SHOP.find(z=>z.id===v.k);return `<div class="card wish ${v.u?"done":""}"><div class="wh"><div class="tile t2">${ic(x.ic,24)}</div><div style="flex:1"><h3>${esc(x.n)}</h3></div>${v.u?"":`<button class="btn sm" data-a="use" data-id="${v.id}">Использовать</button>`}</div></div>`}).join(""):"")}
+let dirty=0;function softRender(){const a=document.activeElement;if(a&&/INPUT|TEXTAREA/.test(a.tagName)&&a.type!=="range"&&a.closest("#view"))dirty=1;else render()}
+document.addEventListener("focusout",()=>{if(dirty)setTimeout(()=>{if(dirty){dirty=0;render()}},600)});
+const SPACES=typeof FB!=="undefined"&&!!FB.projectId,REF=new URLSearchParams(location.search).get("ref")||"";
+let SID=SPACES?((location.hash.match(/s=([a-z0-9]+)/)||[])[1]||(()=>{try{return localStorage.getItem("wm_sid")||""}catch(e){return""}})()):"";
+if(SID)try{localStorage.setItem("wm_sid",SID)}catch(e){}
+const dc=c=>db.collection((SID?SID+"_":"")+c);
+function sub(){COLS.forEach(c=>dc(c).onSnapshot(s=>{S[c]=s.docs.map(d=>({id:d.id,...d.data()}));if(!gotData[c]){gotData[c]=1;if(c===(tab==="mem"?"memories":tab))animNext=true}softRender()},()=>toast("Ошибка синхронизации")))}
+function welcome(){sheet(`<h2>Добро пожаловать</h2><p class="note" style="margin:0 0 14px">Создайте общую карту желаний для вас двоих. Затем отправьте партнёру ссылку, и вы будете вести её вместе.${REF?" Вы пришли по приглашению, поэтому получите 150 монет в подарок.":""}</p><button class="btn" data-a="create" style="width:100%">Создать нашу карту</button>`)}
+async function create(){SID=Math.random().toString(36).slice(2,10);try{localStorage.setItem("wm_sid",SID)}catch(e){}location.hash="s="+SID;closeSheet();sub();if(REF&&REF!==SID){const inc=firebase.firestore.FieldValue.increment;try{await dc("meta").doc("main").set({coins:150,refBy:REF},{merge:true});await db.collection(REF+"_meta").doc("main").set({coins:inc(50),refs:inc(1)},{merge:true});toast("Вам начислено 150 монет")}catch(e){toast("Не удалось начислить бонус")}}}
+function shareTxt(tx){if(navigator.share)navigator.share({text:tx}).catch(()=>{});else{try{navigator.clipboard.writeText(tx);toast("Ссылка скопирована")}catch(e){toast("Скопируйте: "+tx)}}}
+function refCard(){const n=meta().refs||0;if(!SPACES)return `<div class="card"><div class="slh"><span>Пригласи друзей</span></div><p class="note">Друг получит 150 монет, а вы 50. Реферальные ссылки заработают, когда сайт опубликован отдельно (GitHub и Firebase).</p></div>`;return `<div class="card"><div class="slh"><span>Пригласи друзей</span><b>${n}</b></div><p class="note">Друг создаёт свою карту по вашей ссылке и получает 150 монет, а вы 50 за каждого друга. Приглашено: ${n}.</p><div class="acts"><button class="btn sm" data-a="refShare">${ic("send",16)}Отправить приглашение</button><button class="btn ghost sm" data-a="partner">Позвать партнёра</button></div></div>`}
+const ymd=d=>{const a=new Date(d),b=new Date();let y=b.getFullYear()-a.getFullYear(),m=b.getMonth()-a.getMonth(),dd=b.getDate()-a.getDate();if(dd<0){m--;dd+=new Date(b.getFullYear(),b.getMonth(),0).getDate()}if(m<0){y--;m+=12}return[y,m,dd]};
+const yw=n=>n%100>10&&n%100<15?"лет":n%10==1?"год":n%10>1&&n%10<5?"года":"лет",mw=n=>n%100>10&&n%100<15?"месяцев":n%10==1?"месяц":n%10>1&&n%10<5?"месяца":"месяцев";
+function together(d){if(new Date(d)>new Date())return"скоро";const[y,m,dd]=ymd(d);return[y&&y+" "+yw(y),m&&m+" "+mw(m),(dd||(!y&&!m))&&dd+" "+dw(dd)].filter(Boolean).join(" ")}
+const APP=[["w1","Добавьте первое желание",20,()=>S.wishes.length>=1],["w3","Добавьте 3 желания",30,()=>S.wishes.length>=3],["pic","Прикрепите фото к желанию",20,()=>S.wishes.some(w=>w.img)],["pr","Подвиньте ползунок прогресса",15,()=>S.wishes.some(w=>pct(w)>0)],["dn","Исполните желание",40,()=>S.wishes.some(w=>pct(w)===100)],["cm","Напишите комментарий к желанию",15,()=>S.wishes.some(w=>(w.comments||[]).length)],["m1","Сохраните воспоминание",20,()=>S.memories.length>=1],["m3","Сохраните 3 воспоминания",30,()=>S.memories.length>=3],["p1","Добавьте место для поездки",20,()=>S.places.length>=1],["sn","Укажите дату начала отношений",15,()=>!!meta().since],["by","Купите что-нибудь в магазине",15,()=>(meta().inv||[]).length>0],["iv","Пригласите друга",30,()=>(meta().refs||0)>0]];
+function appHtml(){const cl=meta().cl||[];return `<div class="h4">Задания приложения</div>`+APP.map((x,n)=>{const c=cl.includes(x[0]),ok=x[3]();return `<div class="card wish ${c?"done":""}"><div class="wh"><div class="tile t${(n*3)%7}">${ic(c?"check":"sparkle",24)}</div><div style="flex:1;min-width:0"><h3>${esc(x[1])}</h3><div class="meta"><span>${ic("coin",13)}+${x[2]}</span></div></div>${c?"":ok?`<button class="btn sm" data-a="claim" data-id="${x[0]}">Забрать</button>`:`<span class="meta">В процессе</span>`}</div></div>`}).join("")}
+const ADMIN="zubaka2802@mail.ru";let USER=null;
+const isAdmin=()=>!!(USER&&USER.email&&USER.email.toLowerCase()===ADMIN);
+function authSheet(){if(!SPACES)return toast("Вход работает в версии с Firebase");
+ if(USER)return sheet(`<h2>Аккаунт</h2><p class="note" style="margin:0 0 14px">${esc(USER.email)}${isAdmin()?". Вы администратор: монеты не ограничены.":""}</p><button class="btn" data-a="logout" style="width:100%">Выйти</button>`);
+ sheet(`<h2>Вход</h2><input id="f_em" type="email" placeholder="Email" autocomplete="username"><input id="f_pw" type="password" placeholder="Пароль" autocomplete="current-password"><div class="row"><button class="btn" data-a="login">Войти</button><button class="btn ghost" data-a="register">Создать аккаунт</button></div>`)}
+function authDo(kind){const em=$("#f_em").value.trim(),pw=$("#f_pw").value;if(!em||!pw)return toast("Введите email и пароль");if(kind==="register"&&pw.length<6)return toast("Пароль: минимум 6 символов");const a=firebase.auth();(kind==="login"?a.signInWithEmailAndPassword(em,pw):a.createUserWithEmailAndPassword(em,pw)).then(()=>{closeSheet();toast("Готово")}).catch(()=>toast(kind==="login"?"Неверный email или пароль":"Не удалось создать аккаунт"))}
+function pickImg(inp){const f=inp.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{const im=new Image();im.onload=()=>{const k=Math.min(1,720/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=im.width*k;c.height=im.height*k;c.getContext("2d").drawImage(im,0,0,c.width,c.height);pend=c.toDataURL("image/jpeg",.68);const p=$("#prev");p.src=pend;p.style.display="block"};im.src=r.result};r.readAsDataURL(f)}
+const imgField=`<label class="l">Фото</label><label class="up">${ic("img",20)}<span>Добавить фото</span><input id="f_img" type="file" accept="image/*" hidden></label><img id="prev" class="prev">`;
+const days=d=>Math.floor((Date.now()-new Date(d).getTime())/864e5);
+const dw=n=>{const a=n%100,b=n%10;return a>10&&a<15?"дней":b==1?"день":b>1&&b<5?"дня":"дней"};
+const ago=d=>{const n=days(d);return n<1?"сегодня":n<31?n+" дн. назад":n<365?Math.floor(n/30)+" мес. назад":Math.floor(n/365)+" г. назад"};
+function dueB(d,p){const n=Math.ceil((new Date(d)-new Date().setHours(0,0,0,0))/864e5);if(p===100)return `<span class="due">${ic("cal",13)}${new Date(d).toLocaleDateString("ru-RU",{day:"numeric",month:"short"})}</span>`;return `<span class="due ${n<0?"late":""}">${ic("cal",13)}${n<0?"просрочено на "+(-n)+" "+dw(-n):n===0?"сегодня":"осталось "+n+" "+dw(n)}</span>`}
+function sinceSheet(){sheet(`<h2>Мы вместе с…</h2><p class="note" style="margin:0 0 12px">Укажите дату, с которой вы вместе.</p><input id="f_since" type="date" value="${(S.meta[0]||{}).since||""}"><div class="row"><button class="btn" data-a="saveSince">Сохранить</button><button class="btn ghost" data-a="close">Отмена</button></div>`)}
+function listSheet(k){lk=k;pend=null;const g=k==="gifts";sheet(`<h2>${g?"Идея подарка":"Новое место"}</h2><label class="l">${g?"Что подарить":"Куда хотим"}</label><input id="f_t" placeholder="${g?"Например, часы":"Например, Санкт-Петербург"}" maxlength="80">${g?'<label class="l">Для кого</label><input id="f_w" placeholder="Имя" maxlength="30">':""}<label class="l">Заметка или ссылка</label><textarea id="f_n" placeholder="Необязательно"></textarea>${imgField}<div class="row"><button class="btn" data-a="saveList">Сохранить</button><button class="btn ghost" data-a="close">Отмена</button></div>`)}
+function listHtml(col){const L=[...S[col]].sort((a,b)=>(!!a.done-!!b.done)||b.ts-a.ts),pl=col==="places";
+ if(!L.length)return `<div class="empty">${ic(pl?"map":"gift",44)}${pl?"Куда мечтаете поехать?":"Идеи подарков друг другу"}<br>Нажмите «+», чтобы добавить</div>`;
+ return L.map((x,n)=>`<div class="card wish ${x.done?"done":""}">${x.img?`<img class="cover" src="${x.img}">`:""}<div class="wh"><div class="tile t${(n*3+(pl?0:2))%7}">${ic(x.done?"check":pl?"map":"gift",24)}</div><div style="flex:1;min-width:0"><h3>${esc(x.title)}</h3>${x.who?`<div class="meta"><span>${ic("user",13)}Для: ${esc(x.who)}</span></div>`:""}${x.note?`<p class="note">${esc(x.note)}</p>`:""}</div></div><div class="acts">${pl?`<a class="btn ghost sm" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(x.title)}">${ic("map",16)}На карте</a>`:""}<button class="btn sm" data-a="tgl" data-col="${col}" data-id="${x.id}">${ic(x.done?"undo":"check",16)}${x.done?"Вернуть":pl?"Были там":"Подарено"}</button><button class="link" data-a="delL" data-col="${col}" data-id="${x.id}">${ic("trash",16)}</button></div></div>`).join("")}
+function save(col,item){if(SPACES&&!SID)return welcome();const i=S[col].findIndex(x=>x.id===item.id);i<0?S[col].push(item):S[col][i]=item;
+ if(db){const {id,...d}=item;dc(col).doc(id).set(d).catch(()=>toast("Не удалось сохранить"))}else{try{localStorage.setItem("wm_"+col,JSON.stringify(S[col]))}catch(e){}}render()}
+function del(col,id){S[col]=S[col].filter(x=>x.id!==id);if(db)dc(col).doc(id).delete().catch(()=>{});else try{localStorage.setItem("wm_"+col,JSON.stringify(S[col]))}catch(e){};render()}
+function render(){
+ const W=S.wishes,d=W.filter(w=>pct(w)===100).length,tot=W.length?Math.round(W.reduce((a,w)=>a+pct(w),0)/W.length):0;
+ $("#pTxt").textContent=d+" ИЗ "+W.length;countTo(tot);$("#rg").style.strokeDashoffset=276.5*(1-tot/100);
+ $("#hh").innerHTML=ic("heart",30,"currentColor");$("#who").innerHTML=`<span style="display:flex;gap:6px;align-items:center">${ic("user",14)}${esc(me||"Представиться")}</span>`;
+ $("#fab").innerHTML=ic("plus",28);$("#thm").innerHTML=ic("sparkle",14)+"Тема";$("#coin").innerHTML=ic("coin",16)+(isAdmin()?"∞":(meta().coins||0));$("#acc").style.display=SPACES?"":"none";$("#acc").innerHTML=ic("user",14)+(USER?(isAdmin()?"Админ":"Аккаунт"):"Войти");$("#fab").style.display=tab==="tasks"||tab==="shop"?"none":"";
+ $("#tabs").innerHTML=TABS.map(x=>`<button class="tab ${x[0]===tab?"on":""}" data-t="${x[0]}">${ic(x[1],18)}${x[2]}</button>`).join("");
+ const sn=(S.meta[0]||{}).since,nn=sn?days(sn):0;$("#tog").innerHTML=sn?`${ic("heart",14,"currentColor")}Вместе ${together(sn)}`:`${ic("cal",14)}Указать дату начала отношений`;
+ const vw=$("#view");vw.className=animNext?"anim":"";animNext=false;vw.innerHTML=tab==="tasks"?refCard()+tasksHtml()+appHtml():tab==="shop"?shopHtml():tab==="wishes"?wishesHtml():tab==="mem"?memHtml():listHtml(tab);
+}
+function wishesHtml(){
+ const cats=[...new Set(S.wishes.map(cn).filter(Boolean))];
+ const list=S.wishes.filter(w=>cat==="all"||cn(w)===cat).sort((a,b)=>(pct(a)===100)-(pct(b)===100)||b.ts-a.ts);
+ const f=cats.length>1?`<div class="filters"><button class="chip ${cat==="all"?"on":""}" data-a="cat" data-v="all">Все</button>${cats.map(c=>`<button class="chip ${cat===c?"on":""}" data-a="cat" data-v="${esc(c)}">${esc(c)}</button>`).join("")}</div>`:"";
+ if(!list.length)return f+`<div class="empty">${ic("sparkle",44)}Пока пусто.<br>Нажмите «+», чтобы добавить первую мечту</div>`;
+ return f+list.map(w=>{const p=pct(w),st=w.steps||[],cm=w.comments||[],i=ci(w);return `<div class="card wish ${p===100?"done":""} ${open[w.id]?"open":""}">
+ ${w.img?`<img class="cover" src="${w.img}">`:""}<div class="wh" data-a="tog" data-id="${w.id}"><div class="tile t${i}">${ic(p===100?"check":CATS[i][0],24)}</div><div style="flex:1;min-width:0"><h3>${esc(w.title)}</h3>${w.note?`<p class="note">${esc(w.note)}</p>`:""}<div class="meta"><span>${esc(cn(w)||"")}</span>${w.due?dueB(w.due,p):""}<span>${ic("msg",13)}${cm.length}</span></div></div><span class="pct">${p}%</span></div>
+ <div class="bar" style="margin-top:12px"><i style="width:${p}%"></i></div>
+ <div class="more"><div class="sl"><div class="slh"><span>Насколько продвинулись</span><b id="pv_${w.id}">${p}%</b></div><input type="range" min="0" max="100" step="5" value="${p}" data-a="prog" data-id="${w.id}"></div>
+ <div class="acts"><button class="btn sm" data-a="done" data-id="${w.id}">${ic(w.done?"undo":"check",18)}${w.done?"Вернуть в мечты":"Мечта исполнена"}</button><button class="link" data-a="delW" data-id="${w.id}">${ic("trash",16)}Удалить</button></div>
+ <div class="h4">${ic("msg",18)}Комментарии</div>
+ ${cm.map(c=>`<div class="cm"><b>${esc(c.a)}</b><small>${new Date(c.ts).toLocaleDateString("ru-RU")}</small><div>${esc(c.t)}</div></div>`).join("")}
+ <div class="row" style="margin-top:8px"><input id="nc_${w.id}" placeholder="Написать комментарий…" maxlength="300"><button class="btn sm" data-a="addCm" data-id="${w.id}">${ic("send",18)}</button></div></div></div>`}).join("")}
+function memHtml(){
+ const L=[...S.memories].sort((a,b)=>(b.date||"").localeCompare(a.date||""));
+ if(!L.length)return `<div class="empty">${ic("camera",44)}Здесь будут ваши тёплые моменты.<br>Нажмите «+», чтобы сохранить первый</div>`;
+ return L.map((m,n)=>`<div class="card mem"><div class="tile t${(n*2+1)%7}">${ic(P[m.ic]?m.ic:"heart",24)}</div><div style="flex:1"><div class="d">${m.date?new Date(m.date).toLocaleDateString("ru-RU",{day:"numeric",month:"long",year:"numeric"}):""} · ${esc(m.author||"")}${m.date?" · "+ago(m.date):""}</div><p class="note" style="color:var(--ink);font-size:15px;margin-top:4px">${esc(m.text)}</p>${m.img?`<img class="mimg" src="${m.img}">`:""}<button class="link" data-a="delM" data-id="${m.id}" style="padding-left:0">${ic("trash",15)}Удалить</button></div></div>`).join("")}
+document.addEventListener("click",e=>{
+ if(e.target.id==="ov")return(SPACES&&!SID)?0:closeSheet();
+ const t=e.target.closest("[data-a],.tab,#fab,#who");if(!t)return;
+ if(t.id==="who")return nameSheet(()=>{closeSheet();render()});
+ if(t.id==="fab")return needName(()=>tab==="wishes"?wishSheet():tab==="mem"?memSheet():listSheet(tab));
+ if(t.classList.contains("tab")){tab=t.dataset.t;animNext=true;return render()}
+ const a=t.dataset.a,id=t.dataset.id,w=S.wishes.find(x=>x.id===id);
+ if(a==="close")closeSheet();
+ else if(a==="saveName"){const v=$("#f_name").value.trim();if(!v)return toast("Введите имя");me=v.slice(0,20);try{localStorage.setItem("wm_name",me)}catch(e){}const cb=pending;pending=null;closeSheet();render();cb&&cb()}
+ else if(a==="yes"){const cb=pending;pending=null;closeSheet();cb&&cb()}
+ else if(a==="pc"){selC=+t.dataset.v;document.querySelectorAll("#pc .pk").forEach((b,i)=>b.classList.toggle("on",i===selC))}
+ else if(a==="pm"){selM=+t.dataset.v;document.querySelectorAll("#pm .pk").forEach((b,i)=>b.classList.toggle("on",i===selM))}
+ else if(a==="cat"){cat=t.dataset.v;render()}
+ else if(a==="tog"){open[id]=!open[id];render()}
+ else if(a==="saveWish"){const ti=$("#f_t").value.trim();if(!ti)return toast("Напишите название мечты");
+  const steps=[];
+  closeSheet();save("wishes",{id:uid(),title:ti,note:$("#f_n").value.trim(),cat:CATS[selC][0]+" "+CATS[selC][1],steps,prog:0,due:$("#f_due").value,img:pend||"",done:false,comments:[],by:me,ts:Date.now()});toast("Мечта добавлена")}
+ else if(a==="saveMem"){const x=$("#f_t").value.trim();if(!x)return toast("Напишите воспоминание");closeSheet();save("memories",{id:uid(),text:x,date:$("#f_d").value,img:pend||"",ic:MIC[selM],author:me,ts:Date.now()});earn(10);toast("Воспоминание сохранено")}
+ else if(a==="step"&&w){const n=JSON.parse(JSON.stringify(w));n.steps[+t.dataset.i].d=t.checked;if(n.steps.every(s=>s.d)){n.done=true;hearts()}else n.done=false;save("wishes",n)}
+ else if(a==="addStep"&&w){const v=$("#ns_"+id).value.trim();if(!v)return;const n=JSON.parse(JSON.stringify(w));(n.steps=n.steps||[]).push({t:v,d:false});n.done=false;save("wishes",n)}
+ else if(a==="done"&&w){const n=JSON.parse(JSON.stringify(w));n.done=!n.done;n.prog=n.done?100:0;if(n.done){if(!n.rew){n.rew=1;earn(50)};(n.steps||[]).forEach(s=>s.d=true);hearts();toast("Ура! Мечта исполнена")}else(n.steps||[]).forEach(s=>s.d=false);save("wishes",n)}
+ else if(a==="addCm"&&w){const v=$("#nc_"+id).value.trim();if(!v)return;needName(()=>{const n=JSON.parse(JSON.stringify(S.wishes.find(x=>x.id===id)||w));(n.comments=n.comments||[]).push({a:me,t:v,ts:Date.now()});save("wishes",n)})}
+ else if(a==="theme")themeSheet();
+ else if(a==="setTheme"){applyTheme(t.dataset.v);if($("#ov").classList.contains("on"))themeSheet()}
+ else if(a==="auth")authSheet();
+ else if(a==="login"||a==="register")authDo(a);
+ else if(a==="logout")firebase.auth().signOut().then(()=>{closeSheet();toast("Вы вышли")});
+ else if(a==="create")create();
+ else if(a==="refShare")shareTxt("Присоединяйся к «Нашей карте желаний»! Создай свою карту по моей ссылке и получи 150 монет: "+location.origin+location.pathname+"?ref="+SID);
+ else if(a==="partner")shareTxt("Давай вести нашу карту желаний вместе: "+location.origin+location.pathname+"#s="+SID);
+ else if(a==="claim"){const x=APP.find(z=>z[0]===id),cl=meta().cl||[];if(x&&x[3]()&&!cl.includes(id)){hearts();setMeta({cl:[...cl,id],coins:(meta().coins||0)+x[2]});coinPop(x[2])}}
+ else if(a==="gotoShop"){tab="shop";animNext=true;render()}
+ else if(a==="task"){const d=Math.floor(Date.now()/864e5),i=+t.dataset.i,td={};Object.entries(meta().td||{}).forEach(([q,v])=>{if(q.startsWith(d+":"))td[q]=v});td[d+":"+i]=1;hearts();setMeta({td,coins:(meta().coins||0)+TASKS[i][1]});coinPop(TASKS[i][1])}
+ else if(a==="buy"){const x=SHOP.find(z=>z.id===id),m=meta();if(!isAdmin()&&(m.coins||0)<x.p)return toast("Не хватает монет");const inv=[...(m.inv||[])];if(x.t!=="friend")inv.push({id:uid(),k:x.id,ts:Date.now(),u:false});setMeta({coins:isAdmin()?(m.coins||0):(m.coins||0)-x.p,inv});hearts();if(x.t==="friend")friendSheet(x);else if(x.t==="theme"){applyTheme(x.th);toast("Тема применена")}else toast("Куплено. Купон лежит в «Моих купонах»")}
+ else if(a==="use"){setMeta({inv:(meta().inv||[]).map(v=>v.id===id?{...v,u:true}:v)});toast("Наслаждайтесь!")}
+ else if(a==="share"){const tx=$("#f_m").value;if(navigator.share)navigator.share({text:tx}).catch(()=>{});else{try{navigator.clipboard.writeText(tx);toast("Текст скопирован")}catch(e){toast("Скопируйте текст вручную")}}}
+ else if(a==="since")sinceSheet();
+ else if(a==="saveSince"){const v=$("#f_since").value;if(!v)return toast("Выберите дату");closeSheet();setMeta({since:v})}
+ else if(a==="saveList"){const ti=$("#f_t").value.trim();if(!ti)return toast("Введите название");const o={id:uid(),title:ti,note:$("#f_n").value.trim(),img:pend||"",done:false,by:me,ts:Date.now()};if(lk==="gifts")o.who=$("#f_w").value.trim();closeSheet();save(lk,o);toast("Добавлено")}
+ else if(a==="tgl"){const c=t.dataset.col,x=S[c].find(z=>z.id===id);if(x){const n={...x,done:!x.done};if(n.done){hearts();if(!x.rew){n.rew=1;earn(c==="places"?30:20)}}save(c,n)}}
+ else if(a==="delL")confirmSheet("Запись будет удалена.",()=>del(t.dataset.col,id));
+ else if(a==="delW")confirmSheet("Желание и все комментарии к нему будут удалены.",()=>del("wishes",id));
+ else if(a==="delM")confirmSheet("Воспоминание будет удалено.",()=>del("memories",id));
+});
+document.addEventListener("input",e=>{const t=e.target;if(t.dataset&&t.dataset.a==="prog"){const v=t.value,b=$("#pv_"+t.dataset.id);b.textContent=v+"%";const bar=t.closest(".wish").querySelector(".bar i");if(bar)bar.style.width=v+"%"}});
+document.addEventListener("change",e=>{const t=e.target;if(t.id==="f_img")return pickImg(t);if(t.dataset&&t.dataset.a==="prog"){const w=S.wishes.find(x=>x.id===t.dataset.id);if(w){const v=+t.value,o={...w,prog:v,done:v===100};if(v===100){hearts();if(!w.rew){o.rew=1;earn(50)}}open[w.id]=true;save("wishes",o)}}});
+(async()=>{
+ const local=c=>{try{return JSON.parse(localStorage.getItem("wm_"+c)||"[]")}catch(e){return[]}};
+ try{if(FB.projectId){firebase.initializeApp(FB);db=firebase.firestore();firebase.auth().onAuthStateChanged(u=>{USER=u;render()})}}catch(e){db=null}
+ if(db){if(SPACES&&!SID)welcome();else sub()}
+ else{COLS.forEach(c=>S[c]=local(c));render();toast("Режим без синхронизации")}
+})();
+render();
+</script></body></html>
